@@ -32,34 +32,23 @@
   document.querySelectorAll('main .card').forEach((section) => observer.observe(section));
 })();
 
-// Keep tab titles aligned with the active page or homepage section.
+// Show the homepage identity until a visitor chooses a section.
 (() => {
   const suffix = 'Youbin He @PolyU';
   if (document.querySelector('.journey-card')) {
     document.title = `My Journey - ${suffix}`;
     return;
   }
-  const sections = [...document.querySelectorAll('#about, #publications')];
-  if (!sections.length) return;
-  function titleFor(id) {
-    document.title = `${id === 'publications' ? 'Publications' : 'About Me'} - ${suffix}`;
+  document.title = suffix;
+  function titleForHash(hash) {
+    const section = hash === '#publications' ? 'Publications' : hash === '#about' ? 'About Me' : null;
+    if (section) document.title = `${section} - ${suffix}`;
   }
-  function titleFromHash() {
-    titleFor(location.hash.slice(1));
-  }
-  titleFromHash();
-  window.addEventListener('hashchange', titleFromHash);
-  let scheduled = false;
-  window.addEventListener('scroll', () => {
-    if (scheduled) return;
-    scheduled = true;
-    requestAnimationFrame(() => {
-      scheduled = false;
-      const header = document.querySelector('.navbar');
-      const boundary = (header?.getBoundingClientRect().bottom || 0) + 100;
-      const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 3;
-      const active = sections.filter(section => section.getBoundingClientRect().top <= boundary).at(-1);
-      titleFor(atBottom ? 'publications' : (active?.id || 'about'));
-    });
-  }, { passive: true });
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest('a[href]');
+    if (!link || event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    const target = new URL(link.href, location.href);
+    if (target.origin === location.origin && target.pathname === location.pathname) titleForHash(target.hash);
+  });
+  window.addEventListener('hashchange', () => titleForHash(location.hash));
 })();
