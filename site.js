@@ -31,3 +31,35 @@
   }, { threshold: 0.08 });
   document.querySelectorAll('main .card').forEach((section) => observer.observe(section));
 })();
+
+// Keep tab titles aligned with the active page or homepage section.
+(() => {
+  const suffix = 'Youbin He @PolyU';
+  if (document.querySelector('.journey-card')) {
+    document.title = `My Journey - ${suffix}`;
+    return;
+  }
+  const sections = [...document.querySelectorAll('#about, #publications')];
+  if (!sections.length) return;
+  function titleFor(id) {
+    document.title = `${id === 'publications' ? 'Publications' : 'About Me'} - ${suffix}`;
+  }
+  function titleFromHash() {
+    titleFor(location.hash.slice(1));
+  }
+  titleFromHash();
+  window.addEventListener('hashchange', titleFromHash);
+  let scheduled = false;
+  window.addEventListener('scroll', () => {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(() => {
+      scheduled = false;
+      const header = document.querySelector('.navbar');
+      const boundary = (header?.getBoundingClientRect().bottom || 0) + 100;
+      const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 3;
+      const active = sections.filter(section => section.getBoundingClientRect().top <= boundary).at(-1);
+      titleFor(atBottom ? 'publications' : (active?.id || 'about'));
+    });
+  }, { passive: true });
+})();
