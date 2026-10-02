@@ -177,3 +177,12 @@ body,nav a,.brand,h1,h2,h3,.bio-copy h1,.bio-copy p,.affiliation,.profile-link,.
 
 .school-identity .university-name{flex:0 1 auto}
 @media(min-width:1001px){.school-identity{gap:4px 8px}.school-identity .university-name{font-size:17px}.school-identity .faculty{font-size:15px}}
+
+.bio-cv{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px}
+/* Bold Georgia for CV and profile links. */
+.bio-cv a,.profile-link{font-weight:700}
+
+/* CV resources share the portrait column spacing and alignment. */
+.profile-sidebar .sidebar-links{width:190px}.profile-sidebar .avatar{align-self:flex-start}.profile-sidebar{align-items:flex-start}.profile-sidebar .sidebar-links{align-self:flex-start}.profile-sidebar .profile-link{white-space:normal}
+@media(max-width:720px){.profile-sidebar .sidebar-links{width:auto}}
+.profile-sidebar .sidebar-links{width:100%}
