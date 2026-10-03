@@ -186,3 +186,10 @@ body,nav a,.brand,h1,h2,h3,.bio-copy h1,.bio-copy p,.affiliation,.profile-link,.
 .profile-sidebar .sidebar-links{width:190px}.profile-sidebar .avatar{align-self:flex-start}.profile-sidebar{align-items:flex-start}.profile-sidebar .sidebar-links{align-self:flex-start}.profile-sidebar .profile-link{white-space:normal}
 @media(max-width:720px){.profile-sidebar .sidebar-links{width:auto}}
 .profile-sidebar .sidebar-links{width:100%}
+
+/* Match the existing Georgia footer; no empty counter or reserved space on failure. */
+.visitor-count{font:italic 700 12px/1.6 Georgia,"Times New Roman",serif;color:#71859b;white-space:nowrap}
+.visitor-count[hidden]{display:none}
+.visitor-count strong{color:#587a9c;font-variant-numeric:lining-nums tabular-nums}
+footer{gap:12px;flex-wrap:wrap}
+@media(max-width:720px){.visitor-count{width:100%;text-align:center;order:3}}
