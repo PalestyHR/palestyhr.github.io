@@ -193,3 +193,4 @@ body,nav a,.brand,h1,h2,h3,.bio-copy h1,.bio-copy p,.affiliation,.profile-link,.
 .visitor-count strong{color:#587a9c;font-variant-numeric:lining-nums tabular-nums}
 footer{gap:12px;flex-wrap:wrap}
 @media(max-width:720px){.visitor-count{width:100%;text-align:center;order:3}}
+.analytics-status{flex-basis:100%;text-align:center;font-size:12px;color:#71859b}
