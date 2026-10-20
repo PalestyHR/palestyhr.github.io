@@ -215,26 +215,33 @@ footer{gap:12px;flex-wrap:wrap}
 .experience:not(.research-experience) .experience-heading{margin-bottom:8px}
 .lab-website{margin:0;font-size:15px;line-height:1.7;font-weight:700;font-style:italic}
 .lab-website a{display:inline-flex;align-items:center;gap:8px}
-.news-feed{max-height:240px;overflow-y:auto;padding:16px 24px;background:linear-gradient(135deg,rgba(170,193,215,.035),rgba(255,255,255,.015) 55%,rgba(255,255,255,.06));border:1px solid rgba(255,255,255,.72);border-radius:8px;backdrop-filter:blur(14px) saturate(120%);-webkit-backdrop-filter:blur(14px) saturate(120%);box-shadow:inset 1px 2px 5px rgba(74,102,131,.045),inset -1px -1px 3px rgba(255,255,255,.2);scrollbar-width:thin;scrollbar-color:#9cacc1 rgba(189,211,230,.2)}
+.news-feed{max-height:240px;overflow-y:scroll;scrollbar-gutter:stable;padding:16px 24px;background:linear-gradient(135deg,rgba(170,193,215,.035),rgba(255,255,255,.015) 55%,rgba(255,255,255,.06));border:1px solid rgba(255,255,255,.72);border-radius:8px;backdrop-filter:blur(14px) saturate(120%);-webkit-backdrop-filter:blur(14px) saturate(120%);box-shadow:inset 1px 2px 5px rgba(74,102,131,.045),inset -1px -1px 3px rgba(255,255,255,.2);scrollbar-width:thin;scrollbar-color:#9cacc1 rgba(189,211,230,.2)}
 .news-feed:focus-visible{outline:2px solid var(--link);outline-offset:4px}
-.news-feed::-webkit-scrollbar{width:6px}
+.news-feed::-webkit-scrollbar{width:6px;background:rgba(189,211,230,.2)}
 .news-feed::-webkit-scrollbar-track{background:rgba(189,211,230,.2)}
 .news-feed::-webkit-scrollbar-thumb{background:#9cacc1;border-radius:4px}
-.news-list{list-style:none;padding:0;margin:0;font-family:Georgia,"Times New Roman","Noto Serif SC",serif;font-size:17px;line-height:1.85}
+.news-scroll-shell{position:relative}
+.news-scroll-shell .news-feed{overflow-y:auto;scrollbar-width:none;scrollbar-gutter:auto;padding-right:32px}
+.news-scroll-shell .news-feed::-webkit-scrollbar{display:none}
+.news-scrollbar{position:absolute;right:8px;top:12px;bottom:12px;width:5px;border-radius:4px;background:rgba(156,172,193,.15);touch-action:none}
+.news-scroll-thumb{display:block;width:100%;height:100%;border-radius:inherit;background:rgba(128,151,177,.55)}
+.news-scrollbar[aria-disabled="true"] .news-scroll-thumb{background:rgba(128,151,177,.25)}
+.news-scrollbar:focus-visible{outline:2px solid var(--link);outline-offset:3px}
+.news-list{list-style:none;padding:0;margin:0;font-family:Georgia,"Times New Roman","Noto Serif SC",serif;font-size:15px;line-height:1.85}
 .news-list li+li{margin-top:14px}
 .news-date{font-family:inherit;font-size:inherit;font-weight:700;color:inherit;white-space:nowrap;margin-right:8px}
-@media(max-width:720px){.news-feed{padding:14px 18px;max-height:220px}.news-list{font-size:16px}}
+@media(max-width:720px){.news-feed{padding:14px 18px;max-height:220px}.news-list{font-size:14px}}
 
 /* Independent translation keeps hover feedback compatible with reveal animations. */
-#news{width:90%}
+#news{width:100%}
 .section-module{perspective:1400px}
-.section-module>.card,.news-feed{transform-origin:center;rotate:var(--tilt-axis-x,1) var(--tilt-axis-y,0) 0 var(--tilt-angle,0deg);transition:rotate .35s cubic-bezier(.22,1,.36,1),translate .38s cubic-bezier(.22,1,.36,1),scale .38s cubic-bezier(.22,1,.36,1),box-shadow .35s ease,border-color .3s ease}
+.section-module>.card,.news-feed{transform-origin:center;rotate:var(--tilt-axis-x,1) var(--tilt-axis-y,0) 0 var(--tilt-angle,0deg);transition:rotate .55s cubic-bezier(.22,1,.36,1),translate .55s cubic-bezier(.22,1,.36,1),scale .55s cubic-bezier(.22,1,.36,1),box-shadow .5s cubic-bezier(.22,1,.36,1),border-color .3s ease}
 .section-module>.card:focus-within{border-color:#b6c9db;box-shadow:0 8px 24px rgba(74,102,131,.09)}
 @media(hover:hover) and (pointer:fine){
-  .section-module>.card:hover{translate:2px -4px;scale:1.003;transition:translate .5s cubic-bezier(.2,1.4,.35,1),scale .5s cubic-bezier(.2,1.4,.35,1),box-shadow .4s ease,border-color .3s ease;border-color:#b6c9db;box-shadow:var(--hover-shadow-x,0px) var(--hover-shadow-y,8px) 26px rgba(74,102,131,.1)}
-  .news-feed:hover{translate:1.5px -3px;scale:1.002;transition:translate .5s cubic-bezier(.2,1.4,.35,1),scale .5s cubic-bezier(.2,1.4,.35,1),box-shadow .4s ease,border-color .3s ease;border-color:rgba(255,255,255,.96);box-shadow:inset 1px 2px 5px rgba(74,102,131,.045),inset -1px -1px 3px rgba(255,255,255,.2),var(--hover-shadow-x,0px) var(--hover-shadow-y,7px) 20px rgba(74,102,131,.055)}
+  .section-module>.card:hover{translate:1px -2px;scale:1.001;transition:translate .55s cubic-bezier(.22,1,.36,1),scale .55s cubic-bezier(.22,1,.36,1),box-shadow .4s ease,border-color .3s ease;border-color:#b6c9db;box-shadow:var(--hover-shadow-x,0px) var(--hover-shadow-y,8px) 26px rgba(74,102,131,.1)}
+  .news-feed:hover{translate:.5px -1px;scale:1.001;transition:translate .55s cubic-bezier(.22,1,.36,1),scale .55s cubic-bezier(.22,1,.36,1),box-shadow .4s ease,border-color .3s ease;border-color:rgba(255,255,255,.96);box-shadow:inset 1px 2px 5px rgba(74,102,131,.045),inset -1px -1px 3px rgba(255,255,255,.2),var(--hover-shadow-x,0px) var(--hover-shadow-y,7px) 20px rgba(74,102,131,.055)}
 }
-@media(hover:hover) and (pointer:fine){.section-module>.card:hover,.news-feed:hover{transition:rotate .16s ease-out,translate .5s cubic-bezier(.2,1.4,.35,1),scale .5s cubic-bezier(.2,1.4,.35,1),box-shadow .16s ease-out,border-color .3s ease}}
+@media(hover:hover) and (pointer:fine){.section-module>.card:hover,.news-feed:hover{transition:rotate .45s cubic-bezier(.22,1,.36,1),translate .55s cubic-bezier(.22,1,.36,1),scale .55s cubic-bezier(.22,1,.36,1),box-shadow .45s cubic-bezier(.22,1,.36,1),border-color .3s ease}}
 @media(max-width:720px){#news{width:100%}}
 @media(prefers-reduced-motion:reduce){.section-module>.card,.section-module>.card:hover,.news-feed,.news-feed:hover{transition:none;translate:none;scale:none;rotate:none}}
 @media(max-width:720px){.research-logo{width:72px;height:72px}.research-logo img{width:72px;height:72px}.experience-heading .lens-logo-link{height:52px}.background-grid .experience{padding-top:24px;padding-bottom:24px}.lab-website{font-size:14px}}
