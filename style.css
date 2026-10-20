@@ -220,8 +220,8 @@ footer{gap:12px;flex-wrap:wrap}
 .news-feed::-webkit-scrollbar{width:6px}
 .news-feed::-webkit-scrollbar-track{background:rgba(189,211,230,.2)}
 .news-feed::-webkit-scrollbar-thumb{background:#9cacc1;border-radius:4px}
-.news-list{list-style:none;padding:0;margin:0;font-size:16px;line-height:1.9}
+.news-list{list-style:none;padding:0;margin:0;font-size:17px;line-height:1.85}
 .news-list li+li{margin-top:14px}
-.news-date{font-weight:700;white-space:nowrap;margin-right:7px}
-@media(max-width:720px){.news-feed{padding:14px 18px;max-height:220px}.news-list{font-size:15px}}
+.news-date{font-family:Arial,"Microsoft YaHei",sans-serif;font-size:14px;font-weight:600;color:#586c7e;white-space:nowrap;margin-right:10px;font-variant-numeric:lining-nums tabular-nums}
+@media(max-width:720px){.news-feed{padding:14px 18px;max-height:220px}.news-list{font-size:16px}.news-date{font-size:13px}}
 @media(max-width:720px){.research-logo{width:72px;height:72px}.research-logo img{width:72px;height:72px}.experience-heading .lens-logo-link{height:52px}.background-grid .experience{padding-top:24px;padding-bottom:24px}.lab-website{font-size:14px}}
