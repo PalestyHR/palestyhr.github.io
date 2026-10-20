@@ -200,9 +200,11 @@ footer{gap:12px;flex-wrap:wrap}
 .experience-heading{align-items:start}
 .experience-heading .experience-meta{padding-top:4px}
 .company-name a{color:inherit}
-.research-logo{display:block;line-height:0}
-.research-logo img{display:block;width:92px;height:92px;object-fit:contain}
-@media(max-width:720px){.research-logo img{width:72px;height:72px}}
+.research-logo{display:block;line-height:0;justify-self:center}
+.research-logo img{display:block;width:64px;height:64px;object-fit:contain}
+.background-grid .research-experience{padding-top:22px;padding-bottom:22px}
 .lens-logo-link{display:block;line-height:0;width:92px}
 .company-role .work-mentor{flex-basis:100%;margin:0;font-size:15px;font-weight:400;font-style:italic;line-height:1.7}
 @media(max-width:720px){.lens-logo-link{width:72px}.company-role .work-mentor{font-size:14px}}
+.experience .work-mentor-footer{margin:12px 0 0 108px;font-size:15px;font-weight:400;font-style:italic;line-height:1.7}
+@media(max-width:720px){.experience .work-mentor-footer{margin-left:0;font-size:14px}}
