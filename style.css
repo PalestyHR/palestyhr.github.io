@@ -15,7 +15,7 @@
 .sidebar-links{width:156px;padding:1px 0 0;align-self:center;gap:17px}.profile-link{white-space:nowrap}.profile-sidebar .avatar{align-self:center}
 /* Motion is quiet and never hides content when JavaScript is unavailable. */
 .card{transition:box-shadow .28s ease,border-color .28s ease}.profile-sidebar .avatar{transition:transform .32s ease,box-shadow .32s ease}.profile-link,.bio-cv a{transition:color .2s ease,transform .2s ease}.paper-figure img{transition:transform .3s ease,box-shadow .3s ease;transform-origin:center}.paper-figure{overflow:visible}.intro{position:relative}.intro::before{content:"";position:absolute;left:0;right:0;top:-3px;height:3px;border-radius:6px 6px 0 0;background:linear-gradient(100deg,#344a65,#6b91b6,#b597b0,#344a65);background-size:200% 100%;animation:accent-shift 12s ease-in-out infinite}.reveal-enter{animation:section-enter .6s cubic-bezier(.2,.7,.3,1) both}.intro.reveal-enter{animation-duration:.7s}@keyframes section-enter{from{opacity:.15;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}@keyframes accent-shift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-@media(hover:hover) and (pointer:fine){.card:hover{border-color:#c9d3df;box-shadow:0 6px 20px #21364e0b}.profile-sidebar .avatar:hover{transform:translateY(-3px) rotate(1deg);box-shadow:0 9px 20px #385b8220}.profile-link:hover,.bio-cv a:hover{transform:translateX(3px)}.paper-figure:hover img{transform:scale(1.045);box-shadow:0 5px 16px #263c5320}}
+@media(hover:hover) and (pointer:fine){.card:hover{border-color:#c9d3df;box-shadow:0 6px 20px #21364e0b}.profile-sidebar .avatar:hover{transform:translateY(-3px) rotate(1deg);box-shadow:0 9px 20px #385b8220}.profile-link:hover,.bio-cv a:hover{transform:translateX(3px)}.paper-figure:hover img{transform:scale(1.10);box-shadow:0 5px 16px #263c5320}}
 @media(max-width:720px){.profile-sidebar{display:flex;flex-direction:column;align-items:flex-start;gap:20px}.profile-sidebar .avatar{align-self:flex-start;margin:0}.sidebar-links{align-self:flex-start;width:auto;gap:14px;padding:0}}
 @media(prefers-reduced-motion:reduce){.intro::before,.reveal-enter{animation:none}.card,.profile-sidebar .avatar,.profile-link,.bio-cv a,.paper-figure img{transition:none}.profile-sidebar .avatar:hover,.profile-link:hover,.bio-cv a:hover,.paper-figure:hover img{transform:none}}
 /* Theme: pale blue, cool grey, white, with restrained pink accents. */
@@ -224,11 +224,16 @@ footer{gap:12px;flex-wrap:wrap}
 .news-scroll-shell .news-feed{overflow-y:auto;scrollbar-width:none;scrollbar-gutter:auto;padding-right:32px}
 .news-scroll-shell .news-feed::-webkit-scrollbar{display:none}
 .news-scrollbar{position:absolute;right:8px;top:12px;bottom:12px;width:5px;border-radius:4px;background:rgba(156,172,193,.15);touch-action:none}
-.news-scroll-thumb{display:block;width:100%;height:100%;border-radius:inherit;background:rgba(128,151,177,.55)}
-.news-scrollbar[aria-disabled="true"] .news-scroll-thumb{background:rgba(128,151,177,.25)}
+.news-scroll-thumb{display:block;width:100%;height:100%;border-radius:inherit;background:linear-gradient(180deg,#91b8d3,#b6a4cb);opacity:.8;transition:opacity .2s ease}
+.news-scrollbar[aria-disabled="true"] .news-scroll-thumb{opacity:.4}
+.news-scrollbar:not([aria-disabled="true"]):hover .news-scroll-thumb,.news-scrollbar:focus-visible .news-scroll-thumb{opacity:1}
 .news-scrollbar:focus-visible{outline:2px solid var(--link);outline-offset:3px}
 .news-list{list-style:none;padding:0;margin:0;font-family:Georgia,"Times New Roman","Noto Serif SC",serif;font-size:15px;line-height:1.85}
 .news-list li+li{margin-top:14px}
+.news-list li{margin-inline:-8px;padding:4px 8px;border-radius:5px;transition:background-color .25s ease}
+.news-list li:focus-within{background:rgba(126,169,203,.14)}
+@media(hover:hover) and (pointer:fine){.news-list li:hover{background:rgba(126,169,203,.14)}}
+@media(prefers-reduced-motion:reduce){.news-list li,.news-scroll-thumb{transition:none}}
 .news-date{font-family:inherit;font-size:inherit;font-weight:700;color:inherit;white-space:nowrap;margin-right:8px}
 @media(max-width:720px){.news-feed{padding:14px 18px;max-height:220px}.news-list{font-size:14px}}
 
