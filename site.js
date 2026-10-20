@@ -52,3 +52,40 @@
   });
   window.addEventListener('hashchange', () => titleForHash(location.hash));
 })();
+
+// A small pointer-driven tilt complements the independent hover translation.
+(() => {
+  const motion = matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
+  document.querySelectorAll('.section-module > .card, .news-feed').forEach((surface) => {
+    let frame = 0;
+    let pointerX = 0;
+    let pointerY = 0;
+    function reset() {
+      cancelAnimationFrame(frame);
+      frame = 0;
+      surface.style.removeProperty('--tilt-axis-x');
+      surface.style.removeProperty('--tilt-axis-y');
+      surface.style.removeProperty('--tilt-angle');
+    }
+    surface.addEventListener('pointermove', (event) => {
+      if (!motion.matches || event.pointerType === 'touch') return;
+      pointerX = event.clientX;
+      pointerY = event.clientY;
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        const rect = surface.getBoundingClientRect();
+        const x = Math.max(-1, Math.min(1, (pointerX - rect.left) / rect.width * 2 - 1));
+        const y = Math.max(-1, Math.min(1, (pointerY - rect.top) / rect.height * 2 - 1));
+        const distance = Math.hypot(x, y);
+        surface.style.setProperty('--tilt-axis-x', distance ? -y / distance : 1);
+        surface.style.setProperty('--tilt-axis-y', distance ? x / distance : 0);
+        surface.style.setProperty('--tilt-angle', `${Math.min(1, distance * .8)}deg`);
+      });
+    });
+    surface.addEventListener('pointerleave', reset);
+    surface.addEventListener('pointercancel', reset);
+    motion.addEventListener('change', reset);
+    window.addEventListener('blur', reset);
+  });
+})();

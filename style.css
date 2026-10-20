@@ -226,11 +226,15 @@ footer{gap:12px;flex-wrap:wrap}
 @media(max-width:720px){.news-feed{padding:14px 18px;max-height:220px}.news-list{font-size:16px}}
 
 /* Independent translation keeps hover feedback compatible with reveal animations. */
-.section-module>.card,.news-feed{transform-origin:center;transition:translate .38s cubic-bezier(.22,1,.36,1),scale .38s cubic-bezier(.22,1,.36,1),box-shadow .35s ease,border-color .3s ease}
+#news{width:90%}
+.section-module{perspective:1400px}
+.section-module>.card,.news-feed{transform-origin:center;rotate:var(--tilt-axis-x,1) var(--tilt-axis-y,0) 0 var(--tilt-angle,0deg);transition:rotate .35s cubic-bezier(.22,1,.36,1),translate .38s cubic-bezier(.22,1,.36,1),scale .38s cubic-bezier(.22,1,.36,1),box-shadow .35s ease,border-color .3s ease}
 .section-module>.card:focus-within{border-color:#b6c9db;box-shadow:0 8px 24px rgba(74,102,131,.09)}
 @media(hover:hover) and (pointer:fine){
   .section-module>.card:hover{translate:2px -4px;scale:1.003;transition:translate .5s cubic-bezier(.2,1.4,.35,1),scale .5s cubic-bezier(.2,1.4,.35,1),box-shadow .4s ease,border-color .3s ease;border-color:#b6c9db;box-shadow:-3px 11px 28px rgba(74,102,131,.1)}
   .news-feed:hover{translate:1.5px -3px;scale:1.002;transition:translate .5s cubic-bezier(.2,1.4,.35,1),scale .5s cubic-bezier(.2,1.4,.35,1),box-shadow .4s ease,border-color .3s ease;border-color:rgba(255,255,255,.96);box-shadow:inset 1px 2px 5px rgba(74,102,131,.045),inset -1px -1px 3px rgba(255,255,255,.2),-2px 7px 20px rgba(74,102,131,.055)}
 }
-@media(prefers-reduced-motion:reduce){.section-module>.card,.section-module>.card:hover,.news-feed,.news-feed:hover{transition:none;translate:none;scale:none}}
+@media(hover:hover) and (pointer:fine){.section-module>.card:hover,.news-feed:hover{transition:rotate .16s ease-out,translate .5s cubic-bezier(.2,1.4,.35,1),scale .5s cubic-bezier(.2,1.4,.35,1),box-shadow .4s ease,border-color .3s ease}}
+@media(max-width:720px){#news{width:100%}}
+@media(prefers-reduced-motion:reduce){.section-module>.card,.section-module>.card:hover,.news-feed,.news-feed:hover{transition:none;translate:none;scale:none;rotate:none}}
 @media(max-width:720px){.research-logo{width:72px;height:72px}.research-logo img{width:72px;height:72px}.experience-heading .lens-logo-link{height:52px}.background-grid .experience{padding-top:24px;padding-bottom:24px}.lab-website{font-size:14px}}
