@@ -207,3 +207,6 @@ footer{gap:12px;flex-wrap:wrap}
 .research-date{margin:0;font-size:13px;font-style:italic;color:#647180}
 @media(max-width:720px){.research-experience{grid-template-columns:72px minmax(0,1fr);gap:16px}.research-logo img{width:72px;height:72px}.research-details h3{font-size:16px}.research-role{font-size:14px}.research-advisor{font-size:14px}.research-date{font-size:12px}}
 @media(max-width:400px){.research-experience{grid-template-columns:1fr}.research-logo{width:72px}}
+.lens-logo-link{display:block;line-height:0;width:92px}
+.company-role .work-mentor{flex-basis:100%;margin:0;font-size:15px;font-weight:400;font-style:italic;line-height:1.7}
+@media(max-width:720px){.lens-logo-link{width:72px}.company-role .work-mentor{font-size:14px}}
