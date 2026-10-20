@@ -195,18 +195,14 @@ footer{gap:12px;flex-wrap:wrap}
 @media(max-width:720px){.visitor-count{width:100%;text-align:center;order:3}}
 .analytics-status{flex-basis:100%;text-align:center;font-size:12px;color:#71859b}
 
-/* Research appointments follow the site's typography and institution layout. */
-.research-experience{display:grid;grid-template-columns:92px minmax(0,1fr);gap:24px;align-items:center}
+/* Research and work appointments share the same title, role and date layout. */
+.research-experience .experience-heading{margin-bottom:0}
+.experience-heading{align-items:start}
+.experience-heading .experience-meta{padding-top:4px}
+.company-name a{color:inherit}
 .research-logo{display:block;line-height:0}
 .research-logo img{display:block;width:92px;height:92px;object-fit:contain}
-.research-details{min-width:0}
-.research-details h3{margin:0 0 7px;font-size:18px;font-weight:700;line-height:1.55}
-.research-details h3 a{color:inherit}
-.research-role{margin:0 0 6px;font-size:16px;color:#586c7e}
-.research-advisor{margin:0 0 4px;font-size:15px;font-style:italic}
-.research-date{margin:0;font-size:13px;font-style:italic;color:#647180}
-@media(max-width:720px){.research-experience{grid-template-columns:72px minmax(0,1fr);gap:16px}.research-logo img{width:72px;height:72px}.research-details h3{font-size:16px}.research-role{font-size:14px}.research-advisor{font-size:14px}.research-date{font-size:12px}}
-@media(max-width:400px){.research-experience{grid-template-columns:1fr}.research-logo{width:72px}}
+@media(max-width:720px){.research-logo img{width:72px;height:72px}}
 .lens-logo-link{display:block;line-height:0;width:92px}
 .company-role .work-mentor{flex-basis:100%;margin:0;font-size:15px;font-weight:400;font-style:italic;line-height:1.7}
 @media(max-width:720px){.lens-logo-link{width:72px}.company-role .work-mentor{font-size:14px}}
