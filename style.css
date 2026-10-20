@@ -210,9 +210,9 @@ footer{gap:12px;flex-wrap:wrap}
 @media(max-width:720px){.experience .work-mentor-footer{margin-left:0;font-size:14px}}
 .experience .company-role{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
 .experience .company-role .role{display:block}
-.experience-heading .lens-logo-link{display:flex;align-items:center;justify-content:center;height:80px}
+.experience-heading .lens-logo-link{display:flex;align-items:center;justify-content:center;height:58px}
 .experience-heading .lens-logo{margin:0}
-.lab-website{margin:0;font-size:14px;line-height:24px}
+.experience:not(.research-experience) .experience-heading{margin-bottom:8px}
+.lab-website{margin:0;font-size:15px;line-height:1.7;font-weight:700;font-style:italic}
 .lab-website a{display:inline-flex;align-items:center;gap:8px}
-.lab-website img{display:block;width:24px;height:24px;object-fit:contain}
-@media(max-width:720px){.research-logo{width:72px;height:72px}.research-logo img{width:72px;height:72px}.experience-heading .lens-logo-link{height:72px}.background-grid .experience{padding-top:24px;padding-bottom:24px}}
+@media(max-width:720px){.research-logo{width:72px;height:72px}.research-logo img{width:72px;height:72px}.experience-heading .lens-logo-link{height:52px}.background-grid .experience{padding-top:24px;padding-bottom:24px}.lab-website{font-size:14px}}
