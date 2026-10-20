@@ -81,7 +81,7 @@
         const distance = Math.hypot(x, y);
         surface.style.setProperty('--tilt-axis-x', distance ? -y / distance : 1);
         surface.style.setProperty('--tilt-axis-y', distance ? x / distance : 0);
-        surface.style.setProperty('--tilt-angle', `${Math.min(.35, distance * .25)}deg`);
+        surface.style.setProperty('--tilt-angle', `${Math.min(.75, distance * .55)}deg`);
         surface.style.setProperty('--hover-shadow-x', `${-x * 2}px`);
         surface.style.setProperty('--hover-shadow-y', `${8 - y * 1.2}px`);
       });
