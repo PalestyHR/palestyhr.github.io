@@ -215,13 +215,13 @@ footer{gap:12px;flex-wrap:wrap}
 .experience:not(.research-experience) .experience-heading{margin-bottom:8px}
 .lab-website{margin:0;font-size:15px;line-height:1.7;font-weight:700;font-style:italic}
 .lab-website a{display:inline-flex;align-items:center;gap:8px}
-.news-feed{max-height:240px;overflow-y:auto;padding:16px 24px;background:rgba(189,211,230,.15);border-radius:4px;scrollbar-width:thin;scrollbar-color:#9cacc1 rgba(189,211,230,.2)}
+.news-feed{max-height:240px;overflow-y:auto;padding:16px 24px;background:linear-gradient(115deg,rgba(255,255,255,.34),rgba(255,255,255,.08) 52%,rgba(188,211,232,.12));border:1px solid rgba(255,255,255,.48);border-radius:8px;backdrop-filter:blur(14px) saturate(120%);-webkit-backdrop-filter:blur(14px) saturate(120%);box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 3px 14px rgba(74,102,131,.035);scrollbar-width:thin;scrollbar-color:#9cacc1 rgba(189,211,230,.2)}
 .news-feed:focus-visible{outline:2px solid var(--link);outline-offset:4px}
 .news-feed::-webkit-scrollbar{width:6px}
 .news-feed::-webkit-scrollbar-track{background:rgba(189,211,230,.2)}
 .news-feed::-webkit-scrollbar-thumb{background:#9cacc1;border-radius:4px}
-.news-list{list-style:none;padding:0;margin:0;font-size:17px;line-height:1.85}
+.news-list{list-style:none;padding:0;margin:0;font-family:Georgia,"Times New Roman","Noto Serif SC",serif;font-size:17px;line-height:1.85}
 .news-list li+li{margin-top:14px}
-.news-date{font-family:Arial,"Microsoft YaHei",sans-serif;font-size:14px;font-weight:600;color:#586c7e;white-space:nowrap;margin-right:10px;font-variant-numeric:lining-nums tabular-nums}
-@media(max-width:720px){.news-feed{padding:14px 18px;max-height:220px}.news-list{font-size:16px}.news-date{font-size:13px}}
+.news-date{font-family:inherit;font-size:inherit;font-weight:700;color:inherit;white-space:nowrap;margin-right:8px}
+@media(max-width:720px){.news-feed{padding:14px 18px;max-height:220px}.news-list{font-size:16px}}
 @media(max-width:720px){.research-logo{width:72px;height:72px}.research-logo img{width:72px;height:72px}.experience-heading .lens-logo-link{height:52px}.background-grid .experience{padding-top:24px;padding-bottom:24px}.lab-website{font-size:14px}}
