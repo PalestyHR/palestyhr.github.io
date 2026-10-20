@@ -63,9 +63,10 @@
     function reset() {
       cancelAnimationFrame(frame);
       frame = 0;
-      surface.style.removeProperty('--tilt-axis-x');
-      surface.style.removeProperty('--tilt-axis-y');
-      surface.style.removeProperty('--tilt-angle');
+      // Keep the last axis while the angle returns to zero, avoiding a sideways turn.
+      surface.style.setProperty('--tilt-angle', '0deg');
+      surface.style.removeProperty('--hover-shadow-x');
+      surface.style.removeProperty('--hover-shadow-y');
     }
     surface.addEventListener('pointermove', (event) => {
       if (!motion.matches || event.pointerType === 'touch') return;
@@ -81,6 +82,8 @@
         surface.style.setProperty('--tilt-axis-x', distance ? -y / distance : 1);
         surface.style.setProperty('--tilt-axis-y', distance ? x / distance : 0);
         surface.style.setProperty('--tilt-angle', `${Math.min(1, distance * .8)}deg`);
+        surface.style.setProperty('--hover-shadow-x', `${-x * 5}px`);
+        surface.style.setProperty('--hover-shadow-y', `${8 - y * 3}px`);
       });
     });
     surface.addEventListener('pointerleave', reset);
