@@ -29,7 +29,7 @@
       observer.unobserve(entry.target);
     });
   }, { threshold: 0.08 });
-  document.querySelectorAll('main .card').forEach((section) => observer.observe(section));
+  document.querySelectorAll('main .card, .news-feed').forEach((section) => observer.observe(section));
 })();
 
 // Show the homepage identity until a visitor chooses a section.
