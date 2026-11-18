@@ -1,79 +1,119 @@
-// Public account address only; never put account credentials or API tokens here.
 (() => {
-  const statsOrigin = 'https://palestyhr.goatcounter.com';
-  if (location.hostname !== 'palestyhr.github.io') return;
+  "use strict";
 
-
-  // A first-party opt-out avoids the tracker's blocking alert dialog.
-  const optOutKey = 'homepage.analytics.disabled';
-  const toggle = location.hash === '#toggle-goatcounter';
-  const forceOff = location.hash === '#analytics-off';
-  let disabled = false;
-  try {
-    disabled = localStorage.getItem(optOutKey) === '1';
-    if (toggle || forceOff) {
-      disabled = forceOff || !disabled;
-      if (disabled) localStorage.setItem(optOutKey, '1');
-      else localStorage.removeItem(optOutKey);
-    }
-  } catch (_) {
-    // The explicit opt-out still applies to this load if storage is blocked.
-    if (toggle || forceOff) disabled = true;
-  }
-  if (toggle || forceOff) {
-    history.replaceState(null, '', location.pathname + location.search);
-    const status = document.createElement('span');
-    status.className = 'analytics-status';
-    status.setAttribute('role', 'status');
-    status.textContent = disabled ? 'Analytics disabled for this browser.' : 'Analytics enabled for this browser.';
-    document.querySelector('footer')?.appendChild(status);
-  }
-  // Keep alternate homepage URLs and navigation hashes in one page bucket.
-  const path = location.pathname === '/' || location.pathname === '/index.html'
-    ? '/' : location.pathname;
-  let referrer = '';
-  try {
-    if (document.referrer) {
-      const source = new URL(document.referrer);
-      if (source.origin !== location.origin) referrer = source.origin;
-    }
-  } catch (_) { /* Ignore malformed referrers. */ }
-
-  window.goatcounter = {
-    path,
-    title: path === '/' ? 'Youbin He @PolyU' : 'My Journey - Youbin He @PolyU',
-    referrer,
-    no_events: true,
+  const ANALYTICS = {
+    hostname: "palestyhr.github.io",
+    origin: "https://palestyhr.goatcounter.com",
+    trackerScript: "https://gc.zgo.at/count.js",
+    optOutKey: "homepage.analytics.disabled",
+    counterTimeoutMilliseconds: 10_000,
   };
-  const tracker = document.createElement('script');
-  tracker.src = 'https://gc.zgo.at/count.js';
-  tracker.async = true;
-  tracker.dataset.goatcounter = `${statsOrigin}/count`;
-  tracker.referrerPolicy = 'no-referrer';
-  if (!disabled) document.head.appendChild(tracker);
 
-  // The public TOTAL counter is separate from the private analytics dashboard.
-  // Its response may be cached for up to four hours by the service.
-  const counter = document.querySelector('.visitor-count');
-  const value = document.querySelector('[data-visitor-count]');
-  if (!counter || !value) return;
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 10000);
-  fetch(`${statsOrigin}/counter/TOTAL.json`, {
-    credentials: 'omit',
-    referrerPolicy: 'no-referrer',
-    signal: controller.signal,
-  })
-    .then((response) => {
-      if (!response.ok) throw new Error('Visitor counter unavailable');
-      return response.json();
-    })
-    .then((data) => {
-      const count = String(data.count ?? '');
+  function readAnalyticsPreference() {
+    const toggleRequested = location.hash === "#toggle-goatcounter";
+    const disableRequested = location.hash === "#analytics-off";
+    const changed = toggleRequested || disableRequested;
+    let disabled = false;
+
+    try {
+      disabled = localStorage.getItem(ANALYTICS.optOutKey) === "1";
+      if (changed) {
+        disabled = disableRequested || !disabled;
+        if (disabled) localStorage.setItem(ANALYTICS.optOutKey, "1");
+        else localStorage.removeItem(ANALYTICS.optOutKey);
+      }
+    } catch {
+      // Honor an explicit opt-out for this load even when storage is blocked.
+      if (changed) disabled = true;
+    }
+    return { disabled, changed };
+  }
+
+  function showAnalyticsPreference(disabled) {
+    history.replaceState(null, "", location.pathname + location.search);
+    const status = document.createElement("span");
+    status.className = "analytics-status";
+    status.setAttribute("role", "status");
+    status.textContent = disabled
+      ? "Analytics disabled for this browser."
+      : "Analytics enabled for this browser.";
+    document.querySelector("footer")?.appendChild(status);
+  }
+
+  function externalReferrerOrigin() {
+    if (!document.referrer) return "";
+    try {
+      const source = new URL(document.referrer);
+      if (source.origin !== location.origin) return source.origin;
+    } catch {
+      // A malformed referrer does not affect page rendering or tracking setup.
+    }
+    return "";
+  }
+
+  function configureTracker() {
+    let path = location.pathname;
+    if (path === "/index.html") path = "/";
+
+    let title = "My Journey - Youbin He @PolyU";
+    if (path === "/") title = "Youbin He @PolyU";
+
+    window.goatcounter = {
+      path,
+      title,
+      referrer: externalReferrerOrigin(),
+      no_events: true,
+    };
+  }
+
+  function loadTracker() {
+    const tracker = document.createElement("script");
+    tracker.src = ANALYTICS.trackerScript;
+    tracker.async = true;
+    tracker.dataset.goatcounter = `${ANALYTICS.origin}/count`;
+    tracker.referrerPolicy = "no-referrer";
+    document.head.appendChild(tracker);
+  }
+
+  async function updateVisitorCount() {
+    const counter = document.querySelector(".visitor-count");
+    const value = document.querySelector("[data-visitor-count]");
+    if (!counter || !value) return;
+
+    const controller = new AbortController();
+    const timeout = window.setTimeout(
+      () => controller.abort(),
+      ANALYTICS.counterTimeoutMilliseconds,
+    );
+
+    try {
+      const response = await fetch(`${ANALYTICS.origin}/counter/TOTAL.json`, {
+        credentials: "omit",
+        referrerPolicy: "no-referrer",
+        signal: controller.signal,
+      });
+      if (!response.ok) return;
+
+      const data = await response.json();
+      const count = String(data.count ?? "");
       if (!/^\d[\d\s,.]*$/.test(count)) return;
+
       value.textContent = count;
       counter.hidden = false;
-    })
-    .catch(() => { /* A blocked or unavailable counter must not disrupt the page. */ })
-    .finally(() => clearTimeout(timeout));
+    } catch {
+      // Analytics failures must leave the public page usable and the counter hidden.
+    } finally {
+      window.clearTimeout(timeout);
+    }
+  }
+
+  // Restrict counting to the production host; local previews must not create visits.
+  if (location.hostname !== ANALYTICS.hostname) return;
+
+  const preference = readAnalyticsPreference();
+  if (preference.changed) showAnalyticsPreference(preference.disabled);
+  configureTracker();
+  if (!preference.disabled) loadTracker();
+  // The public total remains available independently of the tracking preference.
+  updateVisitorCount();
 })();
