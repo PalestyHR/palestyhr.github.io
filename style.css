@@ -2107,6 +2107,23 @@ nav a {
   }
 }
 
+/* Academic service */
+
+.academic-service {
+  padding: 22px 30px;
+  font-size: 16px;
+}
+
+.academic-service p {
+  margin: 0;
+}
+
+@media (max-width: 720px) {
+  .academic-service {
+    padding: 20px 24px;
+  }
+}
+
 /* Footer and analytics */
 
 .visitor-count {
