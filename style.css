@@ -1384,7 +1384,9 @@ nav a {
   padding-top: 4px;
 }
 
-.company-name a {
+.company-name a,
+.research-experience .work-mentor a,
+.news-list a {
   color: inherit;
 }
 
