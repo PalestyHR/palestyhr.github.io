@@ -288,7 +288,7 @@ test("News supports wheel, keyboard, track clicks, thumb dragging and resize", a
 test("News highlighting, image zoom and touch behavior remain intact", async () => {
   const { context, page } = await openPage();
   try {
-    await page.locator(".news-list li").hover();
+    await page.locator(".news-list li").first().hover();
     await page.waitForFunction(
       () =>
         getComputedStyle(document.querySelector(".news-list li"))

@@ -596,12 +596,26 @@ nav a {
 }
 
 .sidebar-links {
-  display: flex;
-  flex-direction: column;
-  width: 156px;
-  padding: 1px 0 0;
-  align-self: center;
-  gap: 17px;
+  display: grid;
+  width: 100%;
+  gap: 13px;
+}
+
+.profile-link-group {
+  display: grid;
+  gap: 4px;
+}
+
+.profile-link-group + .profile-link-group {
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+
+.profile-group-heading {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+  margin: 0 0 3px;
 }
 
 .bio-copy strong {
@@ -616,7 +630,7 @@ nav a {
   color: #789db8;
 }
 
-.sidebar-links .profile-link:nth-child(-n + 2) svg {
+.profile-contact .profile-link svg {
   color: #82a6c2;
 }
 
@@ -723,9 +737,8 @@ nav a {
   float: none;
   width: 156px;
   height: 156px;
-  margin: 1px 0 23px;
+  margin: 1px 0 19px;
   border-radius: 9px;
-  margin-bottom: 27px;
   transition:
     transform 0.32s ease,
     box-shadow 0.32s ease;
@@ -747,10 +760,6 @@ nav a {
   white-space: normal;
 }
 
-.profile-sidebar .sidebar-links {
-  align-self: flex-start;
-  width: 100%;
-}
 @media (max-width: 900px) and (min-width: 721px) {
   .intro {
     grid-template-columns: minmax(0, 1fr) 228px;
@@ -803,13 +812,6 @@ nav a {
     width: 85px;
     height: 85px;
     margin: 0;
-  }
-
-  .sidebar-links {
-    align-self: flex-start;
-    width: auto;
-    gap: 14px;
-    padding: 0;
   }
 
   .profile-sidebar {
