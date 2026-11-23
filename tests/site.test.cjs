@@ -165,7 +165,8 @@ test("navigation titles and section entrance work on the actual pages", async ()
     await page.waitForFunction(() =>
       document.querySelector("#news-feed").classList.contains("reveal-enter"),
     );
-    await page.locator('nav a[href="journey.html"]').click();
+    assert.equal(await page.locator('a[href="journey.html"]').count(), 0);
+    await page.goto(`${origin}/journey.html`);
     assert.equal(await page.title(), "My Journey - Youbin He @PolyU");
     assert.deepEqual(errors, []);
   } finally {
