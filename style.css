@@ -598,17 +598,12 @@ nav a {
 .sidebar-links {
   display: grid;
   width: 100%;
-  gap: 8px;
+  gap: 20px;
 }
 
 .profile-link-group {
   display: grid;
   gap: 4px;
-}
-
-.profile-link-group + .profile-link-group {
-  border-top: 1px solid var(--line);
-  padding-top: 8px;
 }
 
 .bio-copy strong {
