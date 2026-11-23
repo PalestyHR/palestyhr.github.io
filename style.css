@@ -586,6 +586,11 @@ nav a {
   flex-shrink: 0;
 }
 
+.openreview-icon {
+  border-radius: 4px;
+  scale: 0.82;
+}
+
 .bio-copy p:last-of-type {
   margin-bottom: 0;
 }
