@@ -598,7 +598,7 @@ nav a {
 .sidebar-links {
   display: grid;
   width: 100%;
-  gap: 20px;
+  gap: 16px;
 }
 
 .profile-link-group {
@@ -712,9 +712,7 @@ nav a {
   gap: 11px;
   line-height: 23px;
   white-space: nowrap;
-  transition:
-    color 0.2s ease,
-    transform 0.2s ease;
+  transition: color 0.2s ease;
   color: #547a98;
   font-family: var(--font-serif);
   font-size: 13px;
@@ -854,7 +852,6 @@ nav a {
   }
 
   .profile-link:hover {
-    transform: translateX(3px);
     color: #a07894;
   }
 
@@ -877,10 +874,6 @@ nav a {
   }
 
   .profile-sidebar .avatar:hover {
-    transform: none;
-  }
-
-  .profile-link:hover {
     transform: none;
   }
 
