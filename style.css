@@ -598,7 +598,7 @@ nav a {
 .sidebar-links {
   display: grid;
   width: 100%;
-  gap: 13px;
+  gap: 8px;
 }
 
 .profile-link-group {
@@ -608,14 +608,7 @@ nav a {
 
 .profile-link-group + .profile-link-group {
   border-top: 1px solid var(--line);
-  padding-top: 12px;
-}
-
-.profile-group-heading {
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.4;
-  margin: 0 0 3px;
+  padding-top: 8px;
 }
 
 .bio-copy strong {
@@ -2127,6 +2120,10 @@ nav a {
 
 .academic-service p {
   margin: 0;
+}
+
+.academic-service a:not(:hover):not(:focus-visible) {
+  color: inherit;
 }
 
 @media (max-width: 720px) {
