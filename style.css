@@ -578,7 +578,8 @@ nav a {
   color: inherit;
 }
 
-.profile-link svg {
+.profile-link svg,
+.profile-link img {
   width: 20px;
   height: 20px;
   display: block;
@@ -786,7 +787,8 @@ nav a {
     margin-top: 21px;
   }
 
-  .profile-link svg {
+  .profile-link svg,
+  .profile-link img {
     width: 19px;
     height: 19px;
   }
